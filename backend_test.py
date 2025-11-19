@@ -62,6 +62,7 @@ class PortfolioAPITester:
                 
             return response
         except requests.exceptions.RequestException as e:
+            print(f"Request exception for {method} {url}: {e}")
             return None
     
     def test_health_check(self):
