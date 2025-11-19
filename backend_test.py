@@ -525,7 +525,7 @@ class PortfolioAPITester:
             if isinstance(messages, list):
                 self.log_test("Get Contact Messages - With Auth", True, f"Retrieved {len(messages)} contact messages")
                 if messages:
-                    contact_message_id = messages[0].get("id")
+                    contact_message_id = messages[0].get("id") or messages[0].get("_id")
             else:
                 self.log_test("Get Contact Messages - With Auth", False, "Invalid messages format")
         else:
