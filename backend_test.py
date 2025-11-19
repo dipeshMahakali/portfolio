@@ -364,8 +364,8 @@ class PortfolioAPITester:
         
         if response and response.status_code == 200:
             data = response.json()
-            if "id" in data and data.get("name") == new_testimonial["name"]:
-                created_testimonial_id = data["id"]
+            if "_id" in data and data.get("name") == new_testimonial["name"]:
+                created_testimonial_id = data["_id"]
                 self.log_test("Create Testimonial - With Auth", True, f"Successfully created testimonial from: {data['name']}")
             else:
                 self.log_test("Create Testimonial - With Auth", False, "Invalid response format")
