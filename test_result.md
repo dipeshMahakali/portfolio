@@ -290,8 +290,6 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Test all backend API endpoints"
-    - "Verify authentication flow"
     - "Test frontend-backend integration"
     - "Build admin panel if missing"
   stuck_tasks: []
