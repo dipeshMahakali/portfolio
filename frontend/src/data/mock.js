@@ -2,7 +2,7 @@ export const personalInfo = {
   name: "Dipesh Patel",
   title: "Python Developer, AI and IOT Enthusiast",
   description: "Passionate about building innovative solutions using Python, Artificial Intelligence, and Internet of Things technologies.",
-  email: "dipesh.patel19022@gmail.com",
+  email: "dipesh.patel1902@gmail.com",
   phone: "8319821606",
   location: "India",
   github: "https://github.com/starkdipesh",
@@ -15,7 +15,7 @@ export const projects = [
     id: 1,
     title: "JIA Virtual Assistant",
     description: "An intelligent virtual assistant built with Python, featuring voice recognition, natural language processing, and task automation capabilities.",
-    technologies: ["Python", "NLP", "Speech Recognition", "AI"],
+    technologies: ["Python", "NLP", "Speech Recognition", "AI", "Automation", "Web Scraping"],
     github: "https://github.com/starkdipesh/JIA-VIRTUAL-ASSISTANT",
     featured: true
   },
@@ -31,7 +31,7 @@ export const projects = [
     id: 3,
     title: "Data Science Portfolio",
     description: "Comprehensive data science projects covering machine learning, data analysis, visualization, and predictive modeling.",
-    technologies: ["Python", "Pandas", "NumPy", "Machine Learning"],
+    technologies: ["Python", "Pandas", "NumPy", "Machine Learning", "Data Visualization"],
     github: "https://github.com/starkdipesh/Data-Science",
     featured: true
   }
@@ -41,10 +41,18 @@ export const workExperience = [
   {
     id: 1,
     title: "Web Development Training",
-    company: "Shree Mahakali Software",
-    period: "2023",
+    company: "Shree Mahakali Software Pvt Ltd.",
+    period: "Jun 2025 - Dec 2025",
     description: "Completed comprehensive web development training covering frontend and backend technologies, database management, and modern development practices.",
-    technologies: ["HTML", "CSS", "JavaScript", "Python", "Database Management"]
+    technologies: ["HTML", "CSS", "JavaScript", "Python", "Django", "Database Management", "Laravel", "Jquery", "GitLab"]
+  },
+  {
+    id: 2,
+    title: "Data Analysis Internship",
+    company: "Deloite Virtual Internship",
+    period: "May 2025",
+    description: "Analyzed and visualized manufacturing telemetry data using Python, Excel, and Tableau during the Deloitte Data Analytics Virtual Internship to drive operational efficiency and inform business strategy.",
+    technologies: ["Data Cleaning","Data Preprocessing", "Statistical Analysis", "Data Visualization", "Excel", "Python", "Pandas", "NumPy"]
   }
 ];
 

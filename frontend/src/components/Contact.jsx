@@ -148,7 +148,7 @@ const Contact = ({ personalInfo }) => {
                   className="w-full bg-cyan-500 hover:bg-cyan-600 text-black font-semibold py-6 transition-all duration-300 hover:scale-105"
                 >
                   <Send className="w-5 h-5 mr-2" />
-                  Send Message
+                  <a href="https://mail.google.com/mail/u/0/?fs=1&tf=cm&source=mailto&to=dipeshmahakali@gmail.com">Send Message</a>
                 </Button>
               </form>
             </Card>

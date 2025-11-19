@@ -35,7 +35,7 @@ async def seed_database():
         "name": "Dipesh Patel",
         "title": "Python Developer, AI and IOT Enthusiast",
         "description": "Passionate about building innovative solutions using Python, Artificial Intelligence, and Internet of Things technologies.",
-        "email": "dipesh.patel19022@gmail.com",
+        "email": "dipesh.patel1902@gmail.com",
         "phone": "8319821606",
         "location": "India",
         "github": "https://github.com/starkdipesh",

@@ -153,15 +153,15 @@ class PortfolioAPITester:
         
         # Test PUT personal info with auth
         update_data = {
-            "name": "John Doe Updated",
-            "title": "Senior Full Stack Developer",
+            "name": "Dipesh Patel",
+            "title": "Jr. Python Developer and AI & IOT Enthusiast",
             "description": "Updated description",
-            "email": "john.updated@example.com",
-            "phone": "+1-555-0123",
+            "email": "dipesh.patel1902@example.com",
+            "phone": "+91-8319821606",
             "location": "San Francisco, CA",
-            "github": "https://github.com/johndoe",
-            "linkedin": "https://linkedin.com/in/johndoe",
-            "twitter": "https://twitter.com/johndoe"
+            "github": "https://github.com/starkdipesh",
+            "linkedin": "https://linkedin.com/in/dipeshpatel",
+            "twitter": "https://twitter.com/dipeshpatel"
         }
         
         response = self.make_request("PUT", "/personal-info", update_data, auth_required=True)

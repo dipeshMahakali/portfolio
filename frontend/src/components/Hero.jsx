@@ -132,15 +132,14 @@ const Hero = ({ personalInfo }) => {
             <div className="flex flex-wrap gap-4 pt-4">
               <Button
                 onClick={() => scrollToSection('projects')}
-                className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold px-8 py-6 text-lg transition-all duration-300 hover:scale-105"
-              >
+                className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold px-8 py-6 text-lg transition-all duration-300 hover:scale-105" >
                 View My Work
                 <MoveRight className="ml-2 w-5 h-5" />
               </Button>
               <Button
                 onClick={() => scrollToSection('contact')}
                 variant="outline"
-                className="border-2 border-cyan-500 text-cyan-500 hover:bg-cyan-500/10 px-8 py-6 text-lg transition-all duration-300"
+                className="border-2 border-cyan-500 text-cyan-500 hover:text-white hover:scale-105 hover:bg-cyan-500/10 px-8 py-6 text-lg transition-all duration-300 bg-gradient-to-br"
               >
                 Get In Touch
               </Button>
