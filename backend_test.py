@@ -179,11 +179,12 @@ class PortfolioAPITester:
         # Test PUT personal info without auth
         response = self.make_request("PUT", "/personal-info", update_data)
         
-        if response and response.status_code == 403:
+        if response is None:
+            self.log_test("Update Personal Info - No Auth", False, "Request failed - no response received")
+        elif response.status_code == 403:
             self.log_test("Update Personal Info - No Auth", True, "Correctly rejected unauthorized request")
         else:
-            status = response.status_code if response else "No response"
-            self.log_test("Update Personal Info - No Auth", False, f"Expected 403, got: {status}")
+            self.log_test("Update Personal Info - No Auth", False, f"Expected 403, got: {response.status_code}")
     
     def test_projects_crud(self):
         """Test projects CRUD operations"""
