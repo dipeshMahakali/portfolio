@@ -127,11 +127,12 @@ class PortfolioAPITester:
         # Test token verification without token
         response = self.make_request("GET", "/auth/verify")
         
-        if response and response.status_code == 403:
+        if response is None:
+            self.log_test("Token Verification - No Token", False, "Request failed - no response received")
+        elif response.status_code == 403:
             self.log_test("Token Verification - No Token", True, "Correctly rejected request without token")
         else:
-            status = response.status_code if response else "No response"
-            self.log_test("Token Verification - No Token", False, f"Expected 403, got: {status}")
+            self.log_test("Token Verification - No Token", False, f"Expected 403, got: {response.status_code}")
         
         return self.token is not None
     
