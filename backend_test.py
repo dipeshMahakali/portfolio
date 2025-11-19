@@ -215,8 +215,8 @@ class PortfolioAPITester:
         
         if response and response.status_code == 200:
             data = response.json()
-            if "id" in data and data.get("title") == new_project["title"]:
-                created_project_id = data["id"]
+            if "_id" in data and data.get("title") == new_project["title"]:
+                created_project_id = data["_id"]
                 self.log_test("Create Project - With Auth", True, f"Successfully created project: {data['title']}")
             else:
                 self.log_test("Create Project - With Auth", False, "Invalid response format")
