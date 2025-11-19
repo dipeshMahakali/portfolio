@@ -294,8 +294,8 @@ class PortfolioAPITester:
         
         if response and response.status_code == 200:
             data = response.json()
-            if "id" in data and data.get("title") == new_experience["title"]:
-                created_exp_id = data["id"]
+            if "_id" in data and data.get("title") == new_experience["title"]:
+                created_exp_id = data["_id"]
                 self.log_test("Create Work Experience - With Auth", True, f"Successfully created experience: {data['title']}")
             else:
                 self.log_test("Create Work Experience - With Auth", False, "Invalid response format")
