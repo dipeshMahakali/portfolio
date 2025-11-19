@@ -252,11 +252,12 @@ class PortfolioAPITester:
         # Test POST project without auth
         response = self.make_request("POST", "/projects", new_project)
         
-        if response and response.status_code == 403:
+        if response is None:
+            self.log_test("Create Project - No Auth", False, "Request failed - no response received")
+        elif response.status_code == 403:
             self.log_test("Create Project - No Auth", True, "Correctly rejected unauthorized request")
         else:
-            status = response.status_code if response else "No response"
-            self.log_test("Create Project - No Auth", False, f"Expected 403, got: {status}")
+            self.log_test("Create Project - No Auth", False, f"Expected 403, got: {response.status_code}")
         
         # Test DELETE project with auth (if we have a project to delete)
         if created_project_id:
