@@ -104,11 +104,12 @@ class PortfolioAPITester:
         wrong_login_data = {"password": "wrongpassword"}
         response = self.make_request("POST", "/auth/login", wrong_login_data)
         
-        if response and response.status_code == 401:
+        if response is None:
+            self.log_test("Login - Wrong Password", False, "Request failed - no response received")
+        elif response.status_code == 401:
             self.log_test("Login - Wrong Password", True, "Correctly rejected invalid password")
         else:
-            status = response.status_code if response else "No response"
-            self.log_test("Login - Wrong Password", False, f"Expected 401, got: {status}")
+            self.log_test("Login - Wrong Password", False, f"Expected 401, got: {response.status_code}")
         
         # Test token verification with valid token
         response = self.make_request("GET", "/auth/verify", auth_required=True)
