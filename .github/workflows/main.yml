@@ -12,9 +12,11 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install pymongo python-dotenv # Add other necessary packages
+      working-directory: ./backend # Set working directory to install requirements from here
+      run: pip install -r requirements.txt # Or use `pip install pymongo python-dotenv motor`
+
     - name: Run seeding script
-      run: python backend/seed_data.py
-        ls -R ${{ github.workspace }}
+      run: python seed_data.py
+      working-directory: ./backend # Run the script from within the backend folder
       env:
         MONGODB_URI: mongodb+srv://ai-master-dipesh:dev19patel@portfolio-dipesh.c70uwfb.mongodb.net/portfolio_database?retryWrites=true&w=majority&appName=portfolio-dipesh # Pass the secret as an environment variable
