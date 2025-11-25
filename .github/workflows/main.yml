@@ -14,7 +14,7 @@ jobs:
     - name: Install dependencies
       run: pip install pymongo python-dotenv # Add other necessary packages
     - name: Run seeding script
-      run: python seed_data.py
+      run: python backend/seed_data.py
         ls -R ${{ github.workspace }}
       env:
         MONGODB_URI: mongodb+srv://ai-master-dipesh:dev19patel@portfolio-dipesh.c70uwfb.mongodb.net/portfolio_database?retryWrites=true&w=majority&appName=portfolio-dipesh # Pass the secret as an environment variable
