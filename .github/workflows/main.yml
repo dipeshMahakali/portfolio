@@ -21,5 +21,6 @@ jobs:
 
     - name: Run seeding script
       run: python seed_data.py
+      working-directory: ./portfolio
       env:
         MONGODB_URI: mongodb+srv://ai-master-dipesh:dev19patel@portfolio-dipesh.c70uwfb.mongodb.net/portfolio_database?retryWrites=true&w=majority&appName=portfolio-dipesh # Pass the secret as an environment variable
