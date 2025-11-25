@@ -1,26 +1,20 @@
 name: Seed MongoDB
-
 on:
   workflow_dispatch: # Allows you to run the workflow manually from the GitHub UI
-
 jobs:
   seed:
     runs-on: ubuntu-latest
-
     steps:
     - name: Check out repository
       uses: actions/checkout@v4
-
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
         python-version: '3.x'
-
     - name: Install dependencies
       run: pip install pymongo python-dotenv # Add other necessary packages
-
     - name: Run seeding script
       run: python seed_data.py
-      working-directory: ./portfolio
+        ls -R ${{ github.workspace }}
       env:
         MONGODB_URI: mongodb+srv://ai-master-dipesh:dev19patel@portfolio-dipesh.c70uwfb.mongodb.net/portfolio_database?retryWrites=true&w=majority&appName=portfolio-dipesh # Pass the secret as an environment variable
