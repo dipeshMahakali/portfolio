@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 
 # Backend URL from environment
-BASE_URL = "https://fullstack-fixer-8.preview.emergentagent.com/api"
+BASE_URL = "https://skills-homepage.preview.emergentagent.com/api"
 ADMIN_PASSWORD = "admin123"
 
 class PortfolioAPITester:
