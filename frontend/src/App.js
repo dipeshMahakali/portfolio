@@ -114,6 +114,7 @@ function App() {
       <main>
         <Hero personalInfo={personalInfo} />
         <BentoGrid personalInfo={personalInfo} skills={skills} />
+        <Skills skills={skills} />
         <Projects projects={projects} />
         <WorkExperience workExperience={workExperience} />
         <Testimonials testimonials={testimonials} />
