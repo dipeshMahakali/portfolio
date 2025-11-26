@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, User, Briefcase, MessageSquare, Star, Code, Target } from 'lucide-react';
+import { LogOut, User, Briefcase, MessageSquare, Star, Code, Target, Home } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Card } from '../components/ui/card';
 import { toast } from '../hooks/use-toast';
 import api from '../services/api';
+import PersonalInfoManager from '../components/admin/PersonalInfoManager';
+import ProjectsManager from '../components/admin/ProjectsManager';
+import WorkExperienceManager from '../components/admin/WorkExperienceManager';
+import TestimonialsManager from '../components/admin/TestimonialsManager';
+import SkillsManager from '../components/admin/SkillsManager';
+import ApproachManager from '../components/admin/ApproachManager';
+import ContactMessagesManager from '../components/admin/ContactMessagesManager';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const [activeSection, setActiveSection] = useState('overview');
   const [stats, setStats] = useState({
     projects: 0,
     workExperience: 0,
