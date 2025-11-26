@@ -101,45 +101,45 @@ const Hero = ({ personalInfo }) => {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container mx-auto px-6 h-full flex items-center">
+      <div className="relative z-20 container mx-auto px-4 sm:px-6 h-full flex items-center">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-6"
+            className="space-y-4 sm:space-y-6"
           >
             <div className="flex items-center gap-2 text-cyan-400">
-              <Sparkles className="w-5 h-5" />
-              <span className="text-sm font-mono tracking-wider">WELCOME TO MY PORTFOLIO</span>
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-xs sm:text-sm font-mono tracking-wider">WELCOME TO MY PORTFOLIO</span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white leading-tight">
               Hi, I'm{' '}
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 {personalInfo.name}
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-gray-300 max-w-2xl">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl">
               {personalInfo.title}
             </p>
             
-            <p className="text-lg text-gray-400 max-w-2xl">
+            <p className="text-base sm:text-lg text-gray-400 max-w-2xl">
               {personalInfo.description}
             </p>
             
-            <div className="flex flex-wrap gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2 sm:pt-4">
               <Button
                 onClick={() => scrollToSection('projects')}
-                className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold px-8 py-6 text-lg transition-all duration-300 hover:scale-105" >
+                className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg transition-all duration-300 hover:scale-105 w-full sm:w-auto" >
                 View My Work
-                <MoveRight className="ml-2 w-5 h-5" />
+                <MoveRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
               </Button>
               <Button
                 onClick={() => scrollToSection('contact')}
                 variant="outline"
-                className="border-2 border-cyan-500 text-cyan-500 hover:text-white hover:scale-105 hover:bg-cyan-500/10 px-8 py-6 text-lg transition-all duration-300 bg-gradient-to-br"
+                className="border-2 border-cyan-500 text-cyan-500 hover:text-white hover:scale-105 hover:bg-cyan-500/10 px-6 sm:px-8 py-5 sm:py-6 text-base sm:text-lg transition-all duration-300 bg-gradient-to-br w-full sm:w-auto"
               >
                 Get In Touch
               </Button>
