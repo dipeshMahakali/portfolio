@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Globe, Cpu, Brain, Zap, Sparkles, Box, Cloud, Server, Layers, Terminal, FileCode, GitBranch, Package, Settings, Workflow, Layout, Smartphone, Monitor } from 'lucide-react';
+import { Code, Database, Globe, Cpu, Brain, Zap, Sparkles, Box, Cloud, Server, Layers, Terminal, FileCode, GitBranch, Package, Settings, Workflow,Radio, Layout, Smartphone, Monitor } from 'lucide-react';
 import { Card } from './ui/card';
 
 const Skills = ({ skills }) => {
@@ -45,6 +45,9 @@ const Skills = ({ skills }) => {
       'bootstrap': { icon: Layout, gradient: 'from-purple-600 to-purple-700' },
       'sass': { icon: FileCode, gradient: 'from-pink-500 to-pink-600' },
       'jquery': { icon: Code, gradient: 'from-blue-400 to-blue-600' },
+      'automation':{icon:Workflow,gradient:'from-amber-400 to-orange-600'},
+      'iot': {icon: Radio,gradient: "from-cyan-400 to-blue-600"},
+      'robotics': {icon: Cpu,gradient: "from-purple-400 to-indigo-600"},
       
       // Backend
       'python': { icon: Terminal, gradient: 'from-blue-500 to-yellow-500' },
