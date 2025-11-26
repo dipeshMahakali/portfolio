@@ -222,12 +222,12 @@ const Skills = ({ skills }) => {
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"
           >
             {skills.map((skill, index) => {
-              const IconComponent = getIcon(skill.icon);
+              const { icon: IconComponent, gradient } = getIconAndColor(skill.name, skill.icon);
               return (
                 <motion.div key={index} variants={itemVariants}>
                   <Card className="p-4 sm:p-6 h-full bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-105 cursor-pointer group">
                     <div className="flex flex-col items-center text-center space-y-3">
-                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${gradient} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                         <IconComponent className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                       </div>
                       <h3 className="text-sm sm:text-base font-semibold text-white">{skill.name}</h3>
