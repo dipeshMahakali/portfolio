@@ -3,6 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
+import SparkleEffect from './ui/HoverSparkles';
 
 const ProjectCard = ({ project, index }) => {
   const cardRef = useRef(null);
@@ -60,8 +61,9 @@ const ProjectCard = ({ project, index }) => {
       }}
       className="relative"
     >
-      <Card className={`p-8 h-full bg-gradient-to-br ${colors[index % 3]} hover:border-opacity-60 transition-all duration-300 group`}>
-        <div style={{ transform: "translateZ(50px)" }} className="space-y-4">
+      <Card className={`p-8 h-full bg-gradient-to-br ${colors[index % 3]} hover:border-opacity-60 transition-all duration-300 group overflow-hidden relative`}>
+        <SparkleEffect />
+        <div style={{ transform: "translateZ(50px)" }} className="space-y-4 relative z-10">
           <div className="flex items-start justify-between">
             <div className="w-14 h-14 bg-cyan-500/10 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/20 transition-all duration-300">
               <Github className="w-7 h-7 text-cyan-400" />
@@ -90,16 +92,40 @@ const ProjectCard = ({ project, index }) => {
           </div>
 
           <div className="flex gap-3 pt-4">
+            {project.demo && (
+              <Button
+                asChild
+                className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold transition-all duration-300 hover:scale-105"
+              >
+                <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Live Demo
+                </a>
+              </Button>
+            )}
             <Button
               asChild
-              className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold transition-all duration-300 hover:scale-105"
+              variant="outline"
+              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all duration-300 hover:scale-105"
             >
               <a href={project.github} target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4 mr-2" />
-                View Code
+                Source Code
               </a>
             </Button>
           </div>
+
+          {/* Performance Metrics */}
+          {project.metrics && (
+            <div className="pt-4 border-t border-white/10 grid grid-cols-2 gap-3">
+              {project.metrics.map((metric, idx) => (
+                <div key={idx} className="text-center p-2 bg-white/5 rounded-lg">
+                  <div className="text-lg font-bold text-cyan-400">{metric.value}</div>
+                  <div className="text-xs text-gray-400">{metric.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </Card>
     </motion.div>
@@ -109,7 +135,7 @@ const ProjectCard = ({ project, index }) => {
 const Projects = ({ projects }) => {
   return (
     <section id="projects" className="py-24 bg-gradient-to-b from-[#0f0f23] to-[#0a0a1a]">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +150,7 @@ const Projects = ({ projects }) => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

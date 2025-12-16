@@ -17,7 +17,12 @@ export const projects = [
     description: "An intelligent virtual assistant built with Python, featuring voice recognition, natural language processing, and task automation capabilities.",
     technologies: ["Python", "NLP", "Speech Recognition", "AI", "Automation", "Web Scraping"],
     github: "https://github.com/starkdipesh/JIA-VIRTUAL-ASSISTANT",
-    featured: true
+    demo: "https://github.com/starkdipesh/JIA-VIRTUAL-ASSISTANT",
+    featured: true,
+    metrics: [
+      { label: "Accuracy", value: "92%" },
+      { label: "Response Time", value: "<2s" }
+    ]
   },
   {
     id: 2,
@@ -25,7 +30,12 @@ export const projects = [
     description: "A collection of innovative Python projects demonstrating various programming concepts, algorithms, and practical applications.",
     technologies: ["Python", "Automation", "Web Scraping", "APIs"],
     github: "https://github.com/starkdipesh/pythonMiniProjects",
-    featured: true
+    demo: "https://github.com/starkdipesh/pythonMiniProjects",
+    featured: true,
+    metrics: [
+      { label: "Projects", value: "15+" },
+      { label: "Stars", value: "⭐" }
+    ]
   },
   {
     id: 3,
@@ -33,7 +43,12 @@ export const projects = [
     description: "Comprehensive data science projects covering machine learning, data analysis, visualization, and predictive modeling.",
     technologies: ["Python", "Pandas", "NumPy", "Machine Learning", "Data Visualization"],
     github: "https://github.com/starkdipesh/Data-Science",
-    featured: true
+    demo: "https://github.com/starkdipesh/Data-Science",
+    featured: true,
+    metrics: [
+      { label: "Model Accuracy", value: "94%" },
+      { label: "Datasets", value: "10+" }
+    ]
   }
 ];
 
@@ -52,7 +67,7 @@ export const workExperience = [
     company: "Deloite Virtual Internship",
     period: "May 2025",
     description: "Analyzed and visualized manufacturing telemetry data using Python, Excel, and Tableau during the Deloitte Data Analytics Virtual Internship to drive operational efficiency and inform business strategy.",
-    technologies: ["Data Cleaning","Data Preprocessing", "Statistical Analysis", "Data Visualization", "Excel", "Python", "Pandas", "NumPy"]
+    technologies: ["Data Cleaning", "Data Preprocessing", "Statistical Analysis", "Data Visualization", "Excel", "Python", "Pandas", "NumPy"]
   }
 ];
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Header = () => {
@@ -37,9 +37,8 @@ const Header = () => {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-[#0a0a1a]/80 backdrop-blur-lg border-b border-cyan-500/20' : 'bg-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0a0a1a]/80 backdrop-blur-lg border-b border-cyan-500/20' : 'bg-transparent'
+          }`}
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -70,6 +69,16 @@ const Header = () => {
                   {link.name}
                 </a>
               ))}
+              <Button
+                asChild
+                variant="outline"
+                className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all duration-300 hover:scale-105"
+              >
+                <a href="/resume.pdf" download="Dipesh_Patel_Resume.pdf">
+                  <Download className="w-4 h-4 mr-2" />
+                  Resume
+                </a>
+              </Button>
               <Button
                 onClick={() => scrollToSection('#contact')}
                 className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold transition-all duration-300 hover:scale-105"
@@ -111,6 +120,16 @@ const Header = () => {
                 {link.name}
               </a>
             ))}
+            <Button
+              asChild
+              variant="outline"
+              className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold w-full"
+            >
+              <a href="/resume.pdf" download="Dipesh_Patel_Resume.pdf">
+                <Download className="w-4 h-4 mr-2" />
+                Download Resume
+              </a>
+            </Button>
             <Button
               onClick={() => scrollToSection('#contact')}
               className="bg-cyan-500 hover:bg-cyan-600 text-black font-semibold w-full"

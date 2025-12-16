@@ -2,11 +2,12 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
+import SparkleEffect from './ui/HoverSparkles';
 
 const WorkExperience = ({ workExperience }) => {
   return (
     <section id="experience" className="py-24 bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23]">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,14 +31,15 @@ const WorkExperience = ({ workExperience }) => {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="p-8 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-[1.02]">
-                <div className="flex flex-col md:flex-row gap-6">
+              <Card className="p-8 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 hover:scale-[1.02] relative group overflow-hidden">
+                <SparkleEffect />
+                <div className="flex flex-col md:flex-row gap-6 relative z-10">
                   <div className="flex-shrink-0">
                     <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center">
                       <Briefcase className="w-8 h-8 text-white" />
                     </div>
                   </div>
-                  
+
                   <div className="flex-1 space-y-3">
                     <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
                       <div>
@@ -49,11 +51,11 @@ const WorkExperience = ({ workExperience }) => {
                         <span className="text-sm">{work.period}</span>
                       </div>
                     </div>
-                    
+
                     <p className="text-gray-300 leading-relaxed">
                       {work.description}
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-2 pt-2">
                       {work.technologies.map((tech) => (
                         <span key={tech} className="px-3 py-1 bg-cyan-500/10 text-cyan-400 text-sm rounded-full border border-cyan-500/30">

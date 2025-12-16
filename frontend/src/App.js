@@ -3,9 +3,12 @@ import "./App.css";
 import Header from './components/Header';
 import Hero from './components/Hero';
 import BentoGrid from './components/BentoGrid';
+import MetricsDashboard from './components/MetricsDashboard';
 import Skills from './components/Skills';
+import Certifications from './components/Certifications';
 import Projects from './components/Projects';
 import WorkExperience from './components/WorkExperience';
+import GitHubStats from './components/GitHubStats';
 import Testimonials from './components/Testimonials';
 import Approach from './components/Approach';
 import Contact from './components/Contact';
@@ -47,7 +50,7 @@ function App() {
 
         // Update state with API data
         setPersonalInfo(personalInfoRes.data);
-        
+
         // Map projects to match frontend structure
         setProjects(projectsRes.data.map(p => ({
           id: p._id || p.id,
@@ -114,9 +117,12 @@ function App() {
       <main>
         <Hero personalInfo={personalInfo} />
         <BentoGrid personalInfo={personalInfo} skills={skills} />
+        <MetricsDashboard />
         <Skills skills={skills} />
+        <Certifications />
         <Projects projects={projects} />
         <WorkExperience workExperience={workExperience} />
+        <GitHubStats personalInfo={personalInfo} />
         <Testimonials testimonials={testimonials} />
         <Approach approach={approach} />
         <Contact personalInfo={personalInfo} />
