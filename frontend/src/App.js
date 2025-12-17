@@ -26,6 +26,8 @@ function App() {
   const [testimonials, setTestimonials] = useState(mockTestimonials);
   const [skills, setSkills] = useState(mockSkills);
   const [approach, setApproach] = useState(mockApproach);
+  const [metrics, setMetrics] = useState(null);
+  const [certifications, setCertifications] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -38,14 +40,18 @@ function App() {
           workExpRes,
           testimonialsRes,
           skillsRes,
-          approachRes
+          approachRes,
+          metricsRes,
+          certificationsRes
         ] = await Promise.all([
           api.personalInfo.get(),
           api.projects.getAll(),
           api.workExperience.getAll(),
           api.testimonials.getAll(),
           api.skills.get(),
-          api.approach.get()
+          api.approach.get(),
+          api.metrics.get(),
+          api.certifications.get()
         ]);
 
         // Update state with API data
@@ -58,7 +64,9 @@ function App() {
           description: p.description,
           technologies: p.technologies,
           github: p.github,
-          featured: p.featured
+          featured: p.featured,
+          demo: p.demo,
+          metrics: p.metrics
         })));
 
         // Map work experience
@@ -86,6 +94,10 @@ function App() {
 
         // Map approach items
         setApproach(approachRes.data);
+
+        // Set metrics and certifications
+        setMetrics(metricsRes.data.metrics);
+        setCertifications(certificationsRes.data.certifications);
 
         setLoading(false);
       } catch (error) {
@@ -117,9 +129,9 @@ function App() {
       <main>
         <Hero personalInfo={personalInfo} />
         <BentoGrid personalInfo={personalInfo} skills={skills} />
-        <MetricsDashboard />
+        <MetricsDashboard metricsData={metrics} />
         <Skills skills={skills} />
-        <Certifications />
+        <Certifications certificationsData={certifications} />
         <Projects projects={projects} />
         <WorkExperience workExperience={workExperience} />
         <GitHubStats personalInfo={personalInfo} />

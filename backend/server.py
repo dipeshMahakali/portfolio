@@ -7,7 +7,8 @@ import logging
 from pathlib import Path
 
 # Import route modules
-from routes import personal_info, projects, work_experience, testimonials, skills, approach, contact, auth as auth_routes
+# Import route modules
+from routes import personal_info, projects, work_experience, testimonials, skills, approach, contact, metrics, certifications, auth as auth_routes
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -37,6 +38,8 @@ api_router.include_router(testimonials.router)
 api_router.include_router(skills.router)
 api_router.include_router(approach.router)
 api_router.include_router(contact.router)
+api_router.include_router(metrics.router)
+api_router.include_router(certifications.router)
 
 # Include the router in the main app
 app.include_router(api_router)

@@ -16,6 +16,7 @@ const ProjectsManager = () => {
     description: '',
     technologies: '',
     github: '',
+    demo: '',
     featured: false
   });
   const [saving, setSaving] = useState(false);
@@ -47,6 +48,7 @@ const ProjectsManager = () => {
         description: project.description,
         technologies: Array.isArray(project.technologies) ? project.technologies.join(', ') : project.technologies,
         github: project.github || '',
+        demo: project.demo || '',
         featured: project.featured || false
       });
     } else {
@@ -56,6 +58,7 @@ const ProjectsManager = () => {
         description: '',
         technologies: '',
         github: '',
+        demo: '',
         featured: false
       });
     }
@@ -259,6 +262,18 @@ const ProjectsManager = () => {
                   value={formData.github}
                   onChange={handleChange}
                   placeholder="https://github.com/..."
+                  className="bg-white/5 border-white/10 text-white"
+                />
+              </div>
+
+              <div>
+                <label className="text-white text-sm font-medium mb-2 block">Demo URL</label>
+                <Input
+                  type="url"
+                  name="demo"
+                  value={formData.demo}
+                  onChange={handleChange}
+                  placeholder="https://..."
                   className="bg-white/5 border-white/10 text-white"
                 />
               </div>

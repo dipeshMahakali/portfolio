@@ -4,9 +4,9 @@ import { Award, ExternalLink, CheckCircle, Calendar } from 'lucide-react';
 import { Card } from './ui/card';
 import SparkleEffect from './ui/HoverSparkles';
 
-const Certifications = () => {
-    // Sample certifications - will be replaced with actual data
-    const certifications = [
+const Certifications = ({ certificationsData }) => {
+
+    const defaultCertifications = [
         {
             id: 1,
             title: 'AWS Certified Machine Learning - Specialty',
@@ -52,6 +52,8 @@ const Certifications = () => {
             color: 'from-purple-500 to-pink-500'
         }
     ];
+
+    const certifications = (certificationsData && certificationsData.length > 0) ? certificationsData : defaultCertifications;
 
     return (
         <section className="py-20 bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23] relative overflow-hidden">

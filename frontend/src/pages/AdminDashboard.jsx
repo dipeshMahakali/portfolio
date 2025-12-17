@@ -13,6 +13,9 @@ import SkillsManager from '../components/admin/SkillsManager';
 import ApproachManager from '../components/admin/ApproachManager';
 import ContactMessagesManager from '../components/admin/ContactMessagesManager';
 
+import MetricsManager from '../components/admin/MetricsManager';
+import CertificationsManager from '../components/admin/CertificationsManager';
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('overview');
@@ -86,6 +89,10 @@ const AdminDashboard = () => {
         return <ApproachManager />;
       case 'messages':
         return <ContactMessagesManager />;
+      case 'metrics':
+        return <MetricsManager />;
+      case 'certifications':
+        return <CertificationsManager />;
       default:
         return renderOverview();
     }
@@ -143,7 +150,7 @@ const AdminDashboard = () => {
 
       {/* Management Sections */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-        <Card 
+        <Card
           onClick={() => setActiveSection('personal-info')}
           className="p-6 sm:p-8 bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border-cyan-500/20 hover:border-cyan-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -155,7 +162,19 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
+          onClick={() => setActiveSection('metrics')}
+          className="p-6 sm:p-8 bg-gradient-to-br from-yellow-900/20 to-orange-900/20 border-yellow-500/20 hover:border-yellow-500/40 transition-all duration-300 cursor-pointer"
+        >
+          <Target className="w-12 h-12 text-yellow-400 mb-4" />
+          <h3 className="text-xl font-bold text-white mb-2">Dashboard Metrics</h3>
+          <p className="text-gray-400 mb-4 text-sm">Update achievement statistics and numbers</p>
+          <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">
+            Manage
+          </Button>
+        </Card>
+
+        <Card
           onClick={() => setActiveSection('projects')}
           className="p-6 sm:p-8 bg-gradient-to-br from-purple-900/20 to-pink-900/20 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -167,7 +186,19 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
+          onClick={() => setActiveSection('certifications')}
+          className="p-6 sm:p-8 bg-gradient-to-br from-red-900/20 to-pink-900/20 border-red-500/20 hover:border-red-500/40 transition-all duration-300 cursor-pointer"
+        >
+          <Star className="w-12 h-12 text-red-400 mb-4" />
+          <h3 className="text-xl font-bold text-white mb-2">Certifications</h3>
+          <p className="text-gray-400 mb-4 text-sm">Manage professional credentials and licenses</p>
+          <Button className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold">
+            Manage
+          </Button>
+        </Card>
+
+        <Card
           onClick={() => setActiveSection('work-experience')}
           className="p-6 sm:p-8 bg-gradient-to-br from-green-900/20 to-emerald-900/20 border-green-500/20 hover:border-green-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -179,7 +210,7 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
           onClick={() => setActiveSection('testimonials')}
           className="p-6 sm:p-8 bg-gradient-to-br from-orange-900/20 to-red-900/20 border-orange-500/20 hover:border-orange-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -191,7 +222,7 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
           onClick={() => setActiveSection('skills')}
           className="p-6 sm:p-8 bg-gradient-to-br from-blue-900/20 to-indigo-900/20 border-blue-500/20 hover:border-blue-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -203,7 +234,7 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
           onClick={() => setActiveSection('approach')}
           className="p-6 sm:p-8 bg-gradient-to-br from-indigo-900/20 to-purple-900/20 border-indigo-500/20 hover:border-indigo-500/40 transition-all duration-300 cursor-pointer"
         >
@@ -215,7 +246,7 @@ const AdminDashboard = () => {
           </Button>
         </Card>
 
-        <Card 
+        <Card
           onClick={() => setActiveSection('messages')}
           className="p-6 sm:p-8 bg-gradient-to-br from-pink-900/20 to-rose-900/20 border-pink-500/20 hover:border-pink-500/40 transition-all duration-300 cursor-pointer"
         >

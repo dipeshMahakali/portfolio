@@ -3,11 +3,23 @@ import { motion, useInView } from 'framer-motion';
 import { Brain, Cpu, Database, Zap, Code, GitBranch, Trophy, Users } from 'lucide-react';
 import { Card } from './ui/card';
 
-const MetricsDashboard = () => {
+const MetricsDashboard = ({ metricsData }) => {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
 
-    const metrics = [
+    // Icon mapping
+    const iconMap = {
+        'Brain': Brain,
+        'Cpu': Cpu,
+        'Database': Database,
+        'Zap': Zap,
+        'Trophy': Trophy,
+        'Code': Code,
+        'GitBranch': GitBranch,
+        'Users': Users
+    };
+
+    const defaultMetrics = [
         {
             icon: Brain,
             label: 'AI Models Deployed',
@@ -81,6 +93,14 @@ const MetricsDashboard = () => {
             borderColor: 'border-pink-500/30'
         }
     ];
+
+    // Use API data if available, otherwise default
+    const metrics = (metricsData && metricsData.length > 0)
+        ? metricsData.map(m => ({
+            ...m,
+            icon: iconMap[m.iconName] || Brain // Fallback icon
+        }))
+        : defaultMetrics;
 
     const Counter = ({ target, suffix, duration = 2000 }) => {
         const [count, setCount] = useState(0);

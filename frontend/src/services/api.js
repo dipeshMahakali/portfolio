@@ -78,6 +78,18 @@ export const api = {
     markAsRead: (id) => apiClient.put(`/contact/${id}/read`),
     delete: (id) => apiClient.delete(`/contact/${id}`),
   },
+
+  // Dashboard Metrics
+  metrics: {
+    get: () => apiClient.get('/metrics'),
+    update: (data) => apiClient.put('/metrics', data),
+  },
+
+  // Certifications
+  certifications: {
+    get: () => apiClient.get('/certifications'),
+    update: (data) => apiClient.put('/certifications', data),
+  },
 };
 
 export default api;
