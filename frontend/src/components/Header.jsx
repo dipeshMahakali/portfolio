@@ -74,7 +74,7 @@ const Header = () => {
                 variant="outline"
                 className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold transition-all duration-300 hover:scale-105"
               >
-                <a href="/resume.pdf" download="Dipesh_Patel_Resume.pdf">
+                <a href="/resume.html" target="_blank">
                   <Download className="w-4 h-4 mr-2" />
                   Resume
                 </a>
@@ -125,9 +125,9 @@ const Header = () => {
               variant="outline"
               className="border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold w-full"
             >
-              <a href="/resume.pdf" download="Dipesh_Patel_Resume.pdf">
+              <a href="/resume.html" target="_blank">
                 <Download className="w-4 h-4 mr-2" />
-                Download Resume
+                View Resume
               </a>
             </Button>
             <Button

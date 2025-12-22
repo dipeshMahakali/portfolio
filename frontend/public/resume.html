@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dipesh Patel - Resume</title>
+    <!-- Modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #111827;
+            --secondary-color: #4b5563;
+            --accent-color: #2563eb;
+            --text-color: #1f2937;
+            --border-color: #e5e7eb;
+            --bg-color: #fff;
+            --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-size-name: 20pt;
+            --font-size-section: 11pt;
+            --font-size-base: 9.5pt;
+            --font-size-small: 8.5pt;
+        }
+
+        @page {
+            size: A4;
+            margin: 0.4in;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-color);
+            background-color: #f3f4f6;
+            line-height: 1.35;
+            margin: 0;
+            padding: 20px;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .resume-container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            min-height: 297mm; /* Ensure it feels like A4 */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header Layout */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .header-left h1 {
+            font-size: var(--font-size-name);
+            font-weight: 800;
+            margin: 0;
+            color: var(--primary-color);
+            letter-spacing: -0.03em;
+        }
+
+        .header-left .subtitle {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 11pt;
+            margin-top: 2px;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 4px 15px;
+            font-size: var(--font-size-small);
+            color: var(--secondary-color);
+            text-align: right;
+        }
+
+        .contact-info a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Body Layout: 2 Columns to save vertical space */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            flex-grow: 1;
+        }
+
+        section {
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: var(--font-size-section);
+            font-weight: 700;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2px;
+            margin: 0 0 8px 0;
+            letter-spacing: 0.03em;
+            display: flex;
+            align-items: center;
+        }
+
+        .summary {
+            font-size: var(--font-size-base);
+            margin-bottom: 10px;
+            text-align: justify;
+            color: var(--secondary-color);
+        }
+
+        /* Experience & Projects */
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1px;
+        }
+
+        .item-title {
+            font-weight: 700;
+            font-size: 10pt;
+            color: var(--primary-color);
+        }
+
+        .item-date {
+            font-weight: 600;
+            font-size: var(--font-size-small);
+            color: var(--secondary-color);
+        }
+
+        .item-sub {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            font-size: var(--font-size-small);
+            color: var(--accent-color);
+            margin-bottom: 3px;
+        }
+
+        ul {
+            margin: 2px 0 8px 0;
+            padding-left: 15px;
+        }
+
+        li {
+            font-size: 9pt;
+            margin-bottom: 1px;
+            color: var(--secondary-color);
+        }
+
+        /* Sidebar Sections (Right Column) */
+        .skills-group {
+            margin-bottom: 10px;
+        }
+
+        .skills-group strong {
+            display: block;
+            font-size: 9pt;
+            color: var(--primary-color);
+            margin-bottom: 2px;
+        }
+
+        .skills-tags {
+            font-size: 8.5pt;
+            color: var(--secondary-color);
+            line-height: 1.4;
+        }
+
+        .edu-item, .cert-item {
+            margin-bottom: 10px;
+        }
+
+        .edu-item .title, .cert-item .title {
+            font-weight: 700;
+            font-size: 9pt;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        .edu-item .detail, .cert-item .detail {
+            font-size: 8.5pt;
+            color: var(--secondary-color);
+            display: block;
+        }
+
+        /* Print Button */
+        .no-print {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .no-print:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        @media print {
+            .no-print { display: none; }
+            body { 
+                margin: 0; 
+                padding: 0; 
+                background: white;
+            }
+            .resume-container {
+                box-shadow: none;
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="no-print" onclick="window.print()">Download / Print PDF</button>
+
+    <div class="resume-container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-left">
+                <h1 id="user-name">Dipesh Patel</h1>
+                <div id="user-title" class="subtitle">Python Developer | AI & IoT Enthusiast</div>
+            </div>
+            <div class="contact-info">
+                <span>📍 <span id="user-location">India</span></span>
+                <span>📧 <a id="user-email" href="mailto:dipesh.patel1902@gmail.com">dipesh.patel1902@gmail.com</a></span>
+                <span>📞 <span id="user-phone">8319821606</span></span>
+                <span>🔗 <a id="user-linkedin" href="#" target="_blank">LinkedIn</a></span>
+                <span>💻 <a id="user-github" href="#" target="_blank">GitHub</a></span>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Column: Primary Info -->
+            <div class="left-col">
+                <section>
+                    <h2>Professional Summary</h2>
+                    <div id="user-description" class="summary">
+                        Goal-oriented Python Developer with a specialization in AI/ML and IoT. Experienced in architecting scalable solutions, automating complex workflows, and extracting insights from massive datasets. Dedicated to building robust applications that drive efficiency and innovation.
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Professional Experience</h2>
+                    <div id="experience-container">
+                        <!-- Dynamically populated -->
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Key Projects</h2>
+                    <div id="projects-container">
+                        <!-- Dynamically populated -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Secondary Info -->
+            <div class="right-col">
+                <section>
+                    <h2>Technical Skills</h2>
+                    <div id="skills-container">
+                        <div class="skills-group">
+                            <strong>Languages</strong>
+                            <div id="skill-languages" class="skills-tags">Python, SQL, JS, HTML/CSS</div>
+                        </div>
+                        <div class="skills-group">
+                            <strong>Frameworks</strong>
+                            <div id="skill-frameworks" class="skills-tags">Django, React, TensorFlow, Pandas</div>
+                        </div>
+                        <div class="skills-group">
+                            <strong>Specializations</strong>
+                            <div id="skill-special" class="skills-tags">AI/ML Models, IoT, Automation</div>
+                        </div>
+                        <div class="skills-group">
+                            <strong>Tools</strong>
+                            <div id="skill-tools" class="skills-tags">Git, Docker, AWS, Tableau</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Education</h2>
+                    <div id="education-container">
+                        <div class="edu-item">
+                            <span class="title">BCA - Computer Application</span>
+                            <span class="detail">Sardar Patel University</span>
+                            <span class="detail">2022 - 2025 | GPA 8.44/10</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Certifications</h2>
+                    <div id="certifications-container">
+                        <!-- Dynamically populated -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://portfolio-m897.onrender.com/api';
+
+        async function fetchData(endpoint) {
+            try {
+                const response = await fetch(`${API_BASE}${endpoint}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                return await response.json();
+            } catch (error) {
+                console.error(`Could not fetch data from ${endpoint}:`, error);
+                return null;
+            }
+        }
+
+        async function initResume() {
+            const [personalInfo, projects, workExp, skillsData, certificationsData] = await Promise.all([
+                fetchData('/personal-info'),
+                fetchData('/projects'),
+                fetchData('/work-experience'),
+                fetchData('/skills'),
+                fetchData('/certifications')
+            ]);
+
+            if (personalInfo) {
+                document.getElementById('user-name').textContent = personalInfo.name.toUpperCase();
+                document.getElementById('user-title').textContent = personalInfo.title;
+                document.getElementById('user-location').textContent = personalInfo.location;
+                document.getElementById('user-phone').textContent = personalInfo.phone;
+                document.getElementById('user-email').textContent = personalInfo.email;
+                document.getElementById('user-email').href = `mailto:${personalInfo.email}`;
+                document.getElementById('user-linkedin').href = personalInfo.linkedin;
+                document.getElementById('user-github').href = personalInfo.github;
+                if (personalInfo.description) document.getElementById('user-description').textContent = personalInfo.description;
+            }
+
+            if (skillsData) {
+                const skillsArr = Array.isArray(skillsData) ? skillsData : (skillsData.skills || []);
+                const sn = skillsArr.map(s => s.name);
+                document.getElementById('skill-languages').textContent = sn.filter(s => /python|sql|javascript|js|html|css|java|c\+\+|php/i.test(s)).join(', ');
+                document.getElementById('skill-frameworks').textContent = sn.filter(s => /django|react|laravel|tensorflow|pandas|numpy|nlp|scikit/i.test(s)).join(', ');
+                document.getElementById('skill-special').textContent = sn.filter(s => /iot|ai|ml|automation|data science|web dev/i.test(s)).join(', ');
+                document.getElementById('skill-tools').textContent = sn.filter(s => /git|docker|tableau|aws|linux|database|management/i.test(s)).join(', ');
+            }
+
+            if (workExp) {
+                const container = document.getElementById('experience-container');
+                container.innerHTML = '';
+                workExp.forEach(exp => {
+                    const div = document.createElement('div');
+                    div.className = 'experience-item';
+                    div.innerHTML = `
+                        <div class="item-header">
+                            <span class="item-title">${exp.title}</span>
+                            <span class="item-date">${exp.period}</span>
+                        </div>
+                        <div class="item-sub">
+                            <span>${exp.company}</span>
+                        </div>
+                        <ul>
+                            ${exp.description.split('. ').map(line => line.trim() ? `<li>${line.trim().replace(/\.$/, '')}.</li>` : '').join('')}
+                        </ul>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            if (projects) {
+                const container = document.getElementById('projects-container');
+                container.innerHTML = '';
+                projects.slice(0, 3).forEach(project => {
+                    const div = document.createElement('div');
+                    div.className = 'project-item';
+                    let githubUrl = project.github || '';
+                    let displayGithub = githubUrl.replace(/https?:\/\/(www\.)?github\.com\//, '/');
+                    div.innerHTML = `
+                        <div class="item-header">
+                            <span class="item-title">${project.title}</span>
+                            <span class="item-date">GitHub: ${displayGithub}</span>
+                        </div>
+                        <ul>
+                            <li>${project.description}</li>
+                            ${project.metrics ? project.metrics.map(m => `<li><strong>${m.label}:</strong> ${m.value}</li>`).join('') : ''}
+                        </ul>
+                    `;
+                    container.appendChild(div);
+                });
+            }
+
+            if (certificationsData) {
+                const container = document.getElementById('certifications-container');
+                container.innerHTML = '';
+                const certs = Array.isArray(certificationsData) ? certificationsData : (certificationsData.certifications || []);
+                certs.slice(0, 5).forEach(cert => {
+                    const div = document.createElement('div');
+                    div.className = 'cert-item';
+                    div.innerHTML = `<span class="title">${cert.title}</span><span class="detail">${cert.issuer}</span>`;
+                    container.appendChild(div);
+                });
+            }
+        }
+
+        window.onload = initResume;
+    </script>
+</body>
+</html>
