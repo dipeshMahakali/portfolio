@@ -4,11 +4,12 @@ import { motion } from 'framer-motion';
 import { Sparkles, MoveRight, Terminal, Gamepad2, Code } from 'lucide-react';
 import { Button } from './ui/button';
 import * as THREE from 'three';
+import usePerformanceLevel, { getAnimationConfig } from '../hooks/usePerformanceLevel';
 
 // Modern Floating Particles with glow effect
-function FloatingParticles() {
+function FloatingParticles({ count = 500 }) {
   const pointsRef = useRef();
-  const particleCount = 500;
+  const particleCount = count;
 
   const positions = new Float32Array(particleCount * 3);
   const colors = new Float32Array(particleCount * 3);
@@ -310,6 +311,9 @@ function FloatingSymbols() {
 }
 
 const Hero = ({ personalInfo }) => {
+  const performanceLevel = usePerformanceLevel();
+  const config = getAnimationConfig(performanceLevel);
+  
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -319,21 +323,68 @@ const Hero = ({ personalInfo }) => {
 
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden bg-gradient-to-b from-[#0a0a1a] via-[#0f0f23] to-[#0a0a1a]">
-      {/* Modern Tech Graphics Background */}
-      <div className="absolute inset-0 z-0">
-        <Canvas camera={{ position: [0, 0, 25], fov: 75 }}>
-          <ambientLight intensity={0.3} />
-          <pointLight position={[20, 20, 20]} intensity={1.5} color="#00d4ff" />
-          <pointLight position={[-20, -20, -20]} intensity={1} color="#a855f7" />
-          <pointLight position={[0, 20, 10]} intensity={0.8} color="#22c55e" />
-          <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={0.5} color="#00d4ff" />
-          <FloatingParticles />
-          <GeometricShapes />
-          <WaveGrid />
-          <AIChips />
-          <NeuralNodes />
-        </Canvas>
-      </div>
+      {/* Modern Tech Graphics Background - Performance Adaptive */}
+      {config.enableThreeJS ? (
+        <div className="absolute inset-0 z-0">
+          <Canvas 
+            camera={{ position: [0, 0, 25], fov: 75 }}
+            dpr={performanceLevel === 'high' ? [1, 2] : [1, 1.5]}
+            gl={{ 
+              antialias: performanceLevel === 'high',
+              powerPreference: "high-performance",
+              alpha: true
+            }}
+            performance={{ min: 0.5 }}
+          >
+            <ambientLight intensity={0.3} />
+            <pointLight position={[20, 20, 20]} intensity={1.5} color="#00d4ff" />
+            {performanceLevel === 'high' && (
+              <>
+                <pointLight position={[-20, -20, -20]} intensity={1} color="#a855f7" />
+                <pointLight position={[0, 20, 10]} intensity={0.8} color="#22c55e" />
+                <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={0.5} color="#00d4ff" />
+              </>
+            )}
+            <FloatingParticles count={config.particleCount * 10} />
+            {performanceLevel === 'high' && (
+              <>
+                <GeometricShapes />
+                <WaveGrid />
+                <AIChips />
+              </>
+            )}
+            <NeuralNodes />
+          </Canvas>
+        </div>
+      ) : (
+        // Professional CSS-only background for low-end devices
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          {/* Base gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0a1a] via-[#1a1a2e] to-[#16213e]" />
+          
+          {/* Animated gradient orbs */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-500/20 via-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-blue-500/15 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+          </div>
+          
+          {/* Mesh grid pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.15)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.15)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
+          </div>
+          
+          {/* Diagonal light streaks */}
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-cyan-500/5 to-transparent rotate-12" />
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-purple-500/5 to-transparent -rotate-12" />
+          
+          {/* Subtle floating orbs */}
+          <div className="absolute top-20 left-20 w-3 h-3 bg-cyan-400 rounded-full opacity-60 animate-float" />
+          <div className="absolute top-40 right-32 w-2 h-2 bg-purple-400 rounded-full opacity-50 animate-float-delayed" />
+          <div className="absolute bottom-32 left-1/3 w-2.5 h-2.5 bg-blue-400 rounded-full opacity-40 animate-float" style={{ animationDelay: '2s' }} />
+          <div className="absolute bottom-20 right-1/4 w-2 h-2 bg-cyan-400 rounded-full opacity-50 animate-float-delayed" style={{ animationDelay: '3s' }} />
+        </div>
+      )}
 
       {/* Dynamic gradient overlays */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">

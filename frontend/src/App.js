@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import "./App.css";
 import Header from './components/Header';
-import Hero from './components/Hero';
-import BentoGrid from './components/BentoGrid';
-import MetricsDashboard from './components/MetricsDashboard';
-import Skills from './components/Skills';
-import Certifications from './components/Certifications';
-import Projects from './components/Projects';
-import WorkExperience from './components/WorkExperience';
-import GitHubStats from './components/GitHubStats';
-import Testimonials from './components/Testimonials';
-import Approach from './components/Approach';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import { Toaster } from './components/ui/toaster';
 import api from './services/api';
 
 // Import mock data as fallback
 import { personalInfo as mockPersonalInfo, projects as mockProjects, workExperience as mockWorkExperience, testimonials as mockTestimonials, skills as mockSkills, approach as mockApproach } from './data/mock';
+
+// Lazy load heavy components for better memory management
+const Hero = lazy(() => import('./components/Hero'));
+const BentoGrid = lazy(() => import('./components/BentoGrid'));
+const MetricsDashboard = lazy(() => import('./components/MetricsDashboard'));
+const Skills = lazy(() => import('./components/Skills'));
+const Certifications = lazy(() => import('./components/Certifications'));
+const Projects = lazy(() => import('./components/Projects'));
+const WorkExperience = lazy(() => import('./components/WorkExperience'));
+const GitHubStats = lazy(() => import('./components/GitHubStats'));
+const Testimonials = lazy(() => import('./components/Testimonials'));
+const Approach = lazy(() => import('./components/Approach'));
+const Contact = lazy(() => import('./components/Contact'));
+const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
   const [personalInfo, setPersonalInfo] = useState(mockPersonalInfo);
@@ -124,22 +126,46 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App min-h-screen bg-gradient-to-b from-[#0a0a1a] via-[#0d0d1f] to-[#0a0a1a]">
       <Header />
       <main>
-        <Hero personalInfo={personalInfo} />
-        <BentoGrid personalInfo={personalInfo} skills={skills} />
-        <MetricsDashboard metricsData={metrics} />
-        <Skills skills={skills} />
-        <Certifications certificationsData={certifications} />
-        <Projects projects={projects} />
-        <WorkExperience workExperience={workExperience} />
-        <GitHubStats personalInfo={personalInfo} />
-        <Testimonials testimonials={testimonials} />
-        <Approach approach={approach} />
-        <Contact personalInfo={personalInfo} />
+        <Suspense fallback={<div className="h-screen" />}>
+          <Hero personalInfo={personalInfo} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <BentoGrid personalInfo={personalInfo} skills={skills} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <MetricsDashboard metricsData={metrics} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Skills skills={skills} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Certifications certificationsData={certifications} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Projects projects={projects} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <WorkExperience workExperience={workExperience} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <GitHubStats personalInfo={personalInfo} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Testimonials testimonials={testimonials} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Approach approach={approach} />
+        </Suspense>
+        <Suspense fallback={<div className="h-96" />}>
+          <Contact personalInfo={personalInfo} />
+        </Suspense>
       </main>
-      <Footer personalInfo={personalInfo} />
+      <Suspense fallback={<div className="h-24" />}>
+        <Footer personalInfo={personalInfo} />
+      </Suspense>
       <Toaster />
     </div>
   );

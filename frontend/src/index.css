@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Respect user's reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 body {
     margin: 0;
     font-family:
@@ -163,7 +175,31 @@ code {
         }
     }
 
+    @keyframes shimmer {
+        0% {
+            background-position: -200% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
     .animate-glow {
         animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes sparkle {
+        0%, 100% {
+            opacity: 0;
+            transform: scale(0) translateY(0);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1) translateY(-20px);
+        }
+    }
+
+    .animate-sparkle {
+        animation: sparkle 1.5s ease-in-out infinite;
     }
 }

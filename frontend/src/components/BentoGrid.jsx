@@ -25,7 +25,7 @@ const BentoGrid = ({ personalInfo, skills }) => {
   };
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23]">
+    <section id="about" className="py-24 bg-transparent">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -3,20 +3,23 @@ import { motion } from 'framer-motion';
 import { Lightbulb, Search, Code, CheckCircle2 } from 'lucide-react';
 import { Card } from './ui/card';
 import SparkleEffect from './ui/HoverSparkles';
+import usePerformanceLevel, { getAnimationConfig } from '../hooks/usePerformanceLevel';
 
-const CanvasBackground = () => {
+const CanvasBackground = ({ count = 50 }) => {
   const canvasRef = useRef(null);
+  const animationFrameRef = useRef(null);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
     const particles = [];
-    const particleCount = 100;
+    const particleCount = count; // Adaptive particle count
 
     class Particle {
       constructor() {
@@ -67,16 +70,35 @@ const CanvasBackground = () => {
     }
 
     function animate() {
+      if (!isVisibleRef.current) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((particle) => {
         particle.update();
         particle.draw();
       });
       drawLines();
-      requestAnimationFrame(animate);
+      animationFrameRef.current = requestAnimationFrame(animate);
     }
 
     animate();
+
+    // Intersection Observer to pause animation when not visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisibleRef.current = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (canvas) {
+      observer.observe(canvas);
+    }
 
     const handleResize = () => {
       canvas.width = canvas.offsetWidth;
@@ -84,7 +106,14 @@ const CanvasBackground = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -98,10 +127,12 @@ const CanvasBackground = () => {
 
 const Approach = ({ approach }) => {
   const icons = [Lightbulb, Search, Code, CheckCircle2];
+  const performanceLevel = usePerformanceLevel();
+  const config = getAnimationConfig(performanceLevel);
 
   return (
     <section id="approach" className="py-24 bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23] relative overflow-hidden">
-      <CanvasBackground />
+      <CanvasBackground count={config.particleCount} />
 
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl relative z-10">
         <motion.div
