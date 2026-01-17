@@ -421,7 +421,7 @@
                 const container = document.getElementById('certifications-container');
                 container.innerHTML = '';
                 const certs = Array.isArray(certificationsData) ? certificationsData : (certificationsData.certifications || []);
-                certs.slice(0, 10).forEach(cert => {
+                certs.slice(0, 5).forEach(cert => {
                     const div = document.createElement('div');
                     div.className = 'cert-item';
                     div.innerHTML = `<span class="title">${cert.title}</span><span class="detail">${cert.issuer}</span>`;
