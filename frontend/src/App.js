@@ -1,8 +1,10 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { motion } from 'framer-motion';
 import "./App.css";
 import Header from './components/Header';
 import { Toaster } from './components/ui/toaster';
 import api from './services/api';
+import { CardShimmer, BentoCardShimmer, StatsCardShimmer, SkillCardShimmer, TestimonialCardShimmer, ShimmerBox } from './components/ui/shimmer-border';
 
 // Import mock data as fallback
 import { personalInfo as mockPersonalInfo, projects as mockProjects, workExperience as mockWorkExperience, testimonials as mockTestimonials, skills as mockSkills, approach as mockApproach } from './data/mock';
@@ -115,11 +117,96 @@ function App() {
   if (loading) {
     return (
       <div className="App">
-        <div className="flex items-center justify-center h-screen bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23]">
-          <div className="text-center">
-            <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <p className="text-white text-xl">Loading Portfolio...</p>
-          </div>
+        <div className="min-h-screen bg-gradient-to-b from-[#0a0a1a] to-[#0f0f23]">
+          <Header />
+          <main className="container mx-auto px-4 sm:px-6 max-w-7xl">
+            {/* Hero Section Shimmer */}
+            <div className="py-20 text-center">
+              <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl flex items-center justify-center relative overflow-hidden">
+                <ShimmerBox className="w-16 h-16 rounded-2xl" />
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                  Portfolio
+                </span>
+              </h1>
+              <p className="text-gray-400 text-xl mb-8">Loading amazing content...</p>
+              <ShimmerBox className="w-32 h-12 rounded-full mx-auto" />
+            </div>
+
+            {/* Bento Grid Shimmer */}
+            <div className="py-16">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="lg:col-span-2 lg:row-span-2">
+                  <BentoCardShimmer />
+                </div>
+                <BentoCardShimmer />
+                <BentoCardShimmer />
+                <BentoCardShimmer />
+                <BentoCardShimmer />
+              </div>
+            </div>
+
+            {/* Stats Dashboard Shimmer */}
+            <div className="py-16">
+              <div className="text-center mb-12">
+                <ShimmerBox className="w-48 h-8 rounded-lg mx-auto mb-4" />
+                <ShimmerBox className="w-64 h-6 rounded-lg mx-auto" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <StatsCardShimmer />
+                <StatsCardShimmer />
+                <StatsCardShimmer />
+                <StatsCardShimmer />
+              </div>
+            </div>
+
+            {/* Skills Shimmer */}
+            <div className="py-16">
+              <div className="text-center mb-12">
+                <ShimmerBox className="w-32 h-8 rounded-lg mx-auto mb-4" />
+                <ShimmerBox className="w-48 h-6 rounded-lg mx-auto" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+                <SkillCardShimmer />
+              </div>
+            </div>
+
+            {/* Certifications Shimmer */}
+            <div className="py-16">
+              <div className="text-center mb-12">
+                <ShimmerBox className="w-40 h-8 rounded-lg mx-auto mb-4" />
+                <ShimmerBox className="w-56 h-6 rounded-lg mx-auto" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <CardShimmer />
+                <CardShimmer />
+                <CardShimmer />
+                <CardShimmer />
+              </div>
+            </div>
+
+            {/* Testimonials Shimmer */}
+            <div className="py-16">
+              <div className="text-center mb-12">
+                <ShimmerBox className="w-36 h-8 rounded-lg mx-auto mb-4" />
+                <ShimmerBox className="w-52 h-6 rounded-lg mx-auto" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+              </div>
+            </div>
+          </main>
         </div>
       </div>
     );

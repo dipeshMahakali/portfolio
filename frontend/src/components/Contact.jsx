@@ -130,7 +130,7 @@ const Contact = ({ personalInfo }) => {
 
                 {/* Availability Badge */}
                 <div className="mt-6 flex items-center justify-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-wavy"></div>
                   <span className="text-green-400 text-sm font-medium">Available for projects</span>
                 </div>
               </div>

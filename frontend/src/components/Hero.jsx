@@ -364,9 +364,9 @@ const Hero = ({ personalInfo }) => {
           
           {/* Animated gradient orbs */}
           <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-500/20 via-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-blue-500/15 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-wavy" />
+            <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-radial from-purple-500/20 via-purple-500/5 to-transparent rounded-full blur-3xl animate-wavy" style={{ animationDelay: '1s' }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-gradient-radial from-blue-500/15 to-transparent rounded-full blur-2xl animate-wavy" style={{ animationDelay: '0.5s' }} />
           </div>
           
           {/* Mesh grid pattern */}
@@ -389,8 +389,8 @@ const Hero = ({ personalInfo }) => {
       {/* Dynamic gradient overlays */}
       <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
         {/* Radial gradients */}
-        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-gradient-radial from-purple-500/20 via-purple-500/5 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-gradient-radial from-cyan-500/20 via-cyan-500/5 to-transparent rounded-full blur-3xl animate-wavy" />
+        <div className="absolute bottom-0 right-1/4 w-[700px] h-[700px] bg-gradient-radial from-purple-500/20 via-purple-500/5 to-transparent rounded-full blur-3xl animate-wavy" style={{ animationDelay: '1s' }} />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-radial from-blue-500/10 via-transparent to-transparent rounded-full blur-2xl" />
 
         {/* Animated mesh background */}
@@ -441,9 +441,9 @@ const Hero = ({ personalInfo }) => {
               transition={{ delay: 0.2 }}
             >
               <div className="h-px w-12 bg-gradient-to-r from-transparent to-cyan-400" />
-              <Terminal className="w-5 h-5 animate-pulse" />
+              <Terminal className="w-5 h-5 animate-wavy" />
               <span className="text-sm font-mono tracking-wider">SYSTEM ONLINE</span>
-              <Gamepad2 className="w-5 h-5 animate-pulse" />
+              <Gamepad2 className="w-5 h-5 animate-wavy" />
               <div className="h-px w-12 bg-gradient-to-l from-transparent to-cyan-400" />
             </motion.div>
 

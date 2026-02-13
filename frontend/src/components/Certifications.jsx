@@ -5,7 +5,6 @@ import { Card } from './ui/card';
 import SparkleEffect from './ui/HoverSparkles';
 
 const Certifications = ({ certificationsData }) => {
-
     const defaultCertifications = [
         {
             id: 1,

@@ -5,6 +5,19 @@ import { Card } from './ui/card';
 import SparkleEffect from './ui/HoverSparkles';
 
 const Skills = ({ skills }) => {
+  const defaultSkills = [
+    { name: 'Python', level: 90, category: 'Backend', icon: 'terminal' },
+    { name: 'React', level: 85, category: 'Frontend', icon: 'code' },
+    { name: 'TensorFlow', level: 80, category: 'AI/ML', icon: 'brain' },
+    { name: 'AWS', level: 75, category: 'Cloud', icon: 'cloud' },
+    { name: 'Docker', level: 70, category: 'DevOps', icon: 'box' },
+    { name: 'MongoDB', level: 75, category: 'Database', icon: 'database' },
+    { name: 'Node.js', level: 80, category: 'Backend', icon: 'server' },
+    { name: 'TypeScript', level: 85, category: 'Frontend', icon: 'code' }
+  ];
+
+  const skillsData = skills && skills.length > 0 ? skills : defaultSkills;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -197,7 +210,7 @@ const Skills = ({ skills }) => {
   };
 
   // Group skills by category if available
-  const groupedSkills = skills.reduce((acc, skill) => {
+  const groupedSkills = skillsData.reduce((acc, skill) => {
     const category = skill.category || 'General';
     if (!acc[category]) {
       acc[category] = [];
@@ -271,7 +284,7 @@ const Skills = ({ skills }) => {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 max-w-6xl mx-auto"
           >
-            {skills.map((skill, index) => (
+            {skillsData.map((skill, index) => (
               <motion.div key={index} variants={itemVariants}>
                 <SkillCard skill={skill} />
               </motion.div>

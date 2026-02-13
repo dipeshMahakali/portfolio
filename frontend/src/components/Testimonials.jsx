@@ -1,10 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import { Card } from './ui/card';
 import SparkleEffect from './ui/HoverSparkles';
+import { TestimonialCardShimmer } from './ui/shimmer-border';
 
 const Testimonials = ({ testimonials }) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [testimonialsData, setTestimonialsData] = useState([]);
+
+  const defaultTestimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      position: "Senior ML Engineer",
+      company: "Tech Corp",
+      content: "Exceptional work on the AI implementation. The attention to detail and innovative solutions exceeded our expectations.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      position: "CTO",
+      company: "StartupXYZ",
+      content: "Outstanding problem-solving skills and deep technical expertise. Delivered complex IoT solutions ahead of schedule.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Emily Rodriguez",
+      position: "Product Manager",
+      company: "Innovation Labs",
+      content: "Brilliant collaboration and communication. Translated complex requirements into elegant technical solutions.",
+      rating: 5
+    }
+  ];
+
+  useEffect(() => {
+    const loadTestimonials = async () => {
+      setIsLoading(true);
+      // Simulate API delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      const data = testimonials && testimonials.length > 0 ? testimonials : defaultTestimonials;
+      setTestimonialsData(data);
+      setIsLoading(false);
+    };
+
+    loadTestimonials();
+  }, [testimonials]);
   return (
     <section id="testimonials" className="py-24 bg-gradient-to-b from-[#0f0f23] to-[#0a0a1a] overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
@@ -37,33 +81,44 @@ const Testimonials = ({ testimonials }) => {
               },
             }}
           >
-            {[...testimonials, ...testimonials].map((testimonial, index) => (
-              <Card
-                key={`${testimonial.id}-${index}`}
-                className="flex-shrink-0 w-[400px] p-8 bg-gradient-to-br from-purple-900/20 to-blue-900/20 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 relative group overflow-hidden"
-              >
-                <SparkleEffect />
-                <div className="space-y-4 relative z-10">
-                  <Quote className="w-10 h-10 text-cyan-400" />
+            {isLoading ? (
+              <>
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+                <TestimonialCardShimmer />
+              </>
+            ) : (
+              [...testimonialsData, ...testimonialsData].map((testimonial, index) => (
+                <Card
+                  key={`${testimonial.id}-${index}`}
+                  className="flex-shrink-0 w-[400px] p-8 bg-gradient-to-br from-purple-900/20 to-blue-900/20 border-purple-500/20 hover:border-purple-500/40 transition-all duration-300 relative group overflow-hidden"
+                >
+                  <SparkleEffect />
+                  <div className="space-y-4 relative z-10">
+                    <Quote className="w-10 h-10 text-cyan-400" />
 
-                  <div className="flex gap-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    ))}
+                    <div className="flex gap-1">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                      ))}
+                    </div>
+
+                    <p className="text-gray-300 leading-relaxed italic">
+                      "{testimonial.content}"
+                    </p>
+
+                    <div className="pt-4 border-t border-gray-700">
+                      <p className="text-white font-semibold">{testimonial.name}</p>
+                      <p className="text-cyan-400 text-sm">{testimonial.position}</p>
+                      <p className="text-gray-500 text-sm">{testimonial.company}</p>
+                    </div>
                   </div>
-
-                  <p className="text-gray-300 leading-relaxed italic">
-                    "{testimonial.content}"
-                  </p>
-
-                  <div className="pt-4 border-t border-gray-700">
-                    <p className="text-white font-semibold">{testimonial.name}</p>
-                    <p className="text-cyan-400 text-sm">{testimonial.position}</p>
-                    <p className="text-gray-500 text-sm">{testimonial.company}</p>
-                  </div>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              ))
+            )}
           </motion.div>
 
           {/* Gradient Overlays */}
